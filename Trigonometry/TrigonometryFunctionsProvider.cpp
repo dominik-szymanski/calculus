@@ -12,6 +12,7 @@ std::map<std::string, std::function<std::unique_ptr<Function>()>> TrigonometryFu
    {"cos", [](){return std::make_unique<FunctionCosinus>();}},
    {"tan", [](){return std::make_unique<FunctionTangens>();}},
    {"ctg", [](){return std::make_unique<FunctionCotangens>();}},
+   {"sum", [](){return std::make_unique<Sum>();}},
    {"rect_area", [](){return std::make_unique<RectangleArea>();}},};
 
 std::unique_ptr<Function>

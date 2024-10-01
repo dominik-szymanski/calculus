@@ -16,6 +16,19 @@
 #include "../FunctionProvider.hpp"
 #include "../types.hpp"
 
+class MakeList : public Function
+{
+public:
+  explicit MakeList(int params_no);
+  unsigned int getParametersNo() const override;
+  Operand operator()(const std::vector<Operand> &parameters) const override;
+  std::string getName() const override;
+  ~MakeList() override = default;
+
+private:
+  int _params_no;
+};
+
 class ONPParser
 {
 public:

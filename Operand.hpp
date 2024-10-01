@@ -18,9 +18,9 @@ class Operand
     {
     }
 
-    explicit Operand(std::vector<Operand> inValue)
+    explicit Operand(const std::vector<Operand>& inValue)
     : _value(inValue),
-      _type("double")
+      _type("list")
     {
     }
 
@@ -37,6 +37,25 @@ class Operand
     std::string getType() const
     {
       return _type;
+    }
+
+    std::string print() const
+    {
+      if (_type == "double")
+      {
+        return std::to_string(*std::get_if<double>(&_value));
+      }
+      else if(_type == "list")
+      {
+        std::string str_value{'['};
+        auto list = *std::get_if<std::vector<Operand>>(&_value);
+        for(auto& op : list)
+        {
+          str_value += op.print() + ", ";
+        }
+        str_value += "]";
+        return str_value;
+      }
     }
 
   private:

@@ -22,7 +22,7 @@ Calculator::start(std::ostream& outStream)
 
     auto parsed_expression = _parser.parse(expression);
     auto result = _solver.solve(parsed_expression);
-    outStream << "> result: " << result.getDouble() << std::endl;
+    outStream << "> result: " << result.print() << std::endl;
     outStream << "> ";
   }
 

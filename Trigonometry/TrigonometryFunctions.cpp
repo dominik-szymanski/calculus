@@ -101,3 +101,28 @@ std::string RectangleArea::getName() const
 {
   return "rect_area";
 }
+
+unsigned int Sum::getParametersNo() const
+{
+  return 1;
+}
+
+Operand Sum::operator()(const std::vector<Operand> &parameters) const
+{
+  if (parameters.size() != PARAMS_NO)
+  {
+    throw std::runtime_error("incorrect parameters number");
+  }
+  auto list = parameters[0].getList();
+  double result = 0.0;
+  for (auto l : list)
+  {
+    result += l.getDouble();
+  }
+  return Operand(result);
+}
+
+std::string Sum::getName() const
+{
+  return "sum";
+}

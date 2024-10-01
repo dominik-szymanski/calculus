@@ -37,7 +37,7 @@ Solver::executeFunctionOnStack(const MathItem &inFunction, std::vector<Operand> 
     std::vector<Operand> parameters;
     for (unsigned int i = 0; i < (*function)->getParametersNo(); ++i)
     {
-      parameters.push_back(inoutStack.back());
+      parameters.insert(parameters.begin(), inoutStack.back());
       inoutStack.pop_back();
     }
     inoutStack.push_back((*(*function))(parameters));

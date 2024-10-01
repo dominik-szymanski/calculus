@@ -70,4 +70,16 @@ private:
   static constexpr int PARAMS_NO = 2;
 };
 
+class Sum : public Function
+{
+public:
+  unsigned int getParametersNo() const override;
+  Operand operator()(const std::vector<Operand> &parameters) const override;
+  std::string getName() const override;
+  ~Sum() override = default;
+
+private:
+  static constexpr int PARAMS_NO = 1;
+};
+
 #endif //TRIGONOMETRYFUNCTIONS_HPP

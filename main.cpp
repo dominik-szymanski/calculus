@@ -39,7 +39,7 @@ int main()
 
   /* load plugin */
   void* object =
-    loadProvider("/home/dominik/Documents/projects/calculus/cmake-build-debug/plugins/libtrigonometry_functions.so");
+    loadProvider("/home/dominik/Documents/calculus/cmake-build-debug/plugins/libtrigonometry_functions.so");
 
   if(object)
   {
