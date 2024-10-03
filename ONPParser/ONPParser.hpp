@@ -48,6 +48,7 @@ private:
   bool isLeftBracket(const std::string &expression) const;
   bool isRightBracket(const std::string &expression) const;
   bool isFunction(const std::string &expression) const;
+  bool isOperand(const std::string &expression) const;
 
   std::unique_ptr<Operator> createOperatorIfExist(const std::string &inName) const;
   std::unique_ptr<Function> createFunctionIfExist(const std::string &inName) const;

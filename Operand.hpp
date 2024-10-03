@@ -18,6 +18,12 @@ class Operand
     {
     }
 
+  explicit Operand(std::string inValue)
+  : _value(std::move(inValue)),
+    _type("string")
+  {
+  }
+
     explicit Operand(const std::vector<Operand>& inValue)
     : _value(inValue),
       _type("list")
@@ -27,6 +33,11 @@ class Operand
     double getDouble() const
     {
       return *std::get_if<double>(&_value);
+    }
+
+    std::string getString() const
+    {
+      return *std::get_if<std::string>(&_value);
     }
 
     std::vector<Operand> getList() const
@@ -45,6 +56,10 @@ class Operand
       {
         return std::to_string(*std::get_if<double>(&_value));
       }
+      else if (_type == "string")
+      {
+        return *std::get_if<std::string>(&_value);
+      }
       else if(_type == "list")
       {
         std::string str_value{'['};
@@ -60,7 +75,7 @@ class Operand
 
   private:
     std::string _type;
-    std::variant<double, std::vector<Operand>> _value;
+    std::variant<double, std::vector<Operand>, std::string> _value;
   };
 
 

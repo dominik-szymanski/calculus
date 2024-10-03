@@ -74,6 +74,12 @@ ONPParser::isRightBracket(const std::string &expression) const
 }
 
 bool
+ONPParser::isOperand(const std::string &expression) const
+{
+  return isNumber(expression) || expression[0] == '\"';
+}
+
+bool
 ONPParser::isFunction(const std::string &expression) const
 {
   return !isNumber(expression) && !isOperator(expression) && !isDash(expression) && !isLeftBracket(expression) &&
@@ -332,6 +338,11 @@ ONPParser::addNextWord(const std::string &inWord, MathExpression &inoutQueue, st
   if (isNumber(inWord))
   {
     inoutQueue.insert(inoutQueue.begin(), Operand(std::stod(inWord)));
+  }
+  else if (isOperand(inWord))
+  {
+    std::string str{inWord.begin()+1, inWord.end()-1};
+    inoutQueue.insert(inoutQueue.begin(), Operand(str));
   }
   else if (isFunction(inWord))
   {

@@ -6,7 +6,8 @@
 #include "BasicFunctions.hpp"
 
 std::map<std::string, std::function<std::unique_ptr<Function>()>> BasicFunctionProvider::_functionCreator =
-  {{"log", [](){return std::make_unique<FunctionLogarithm>();}}};
+  {{"log", [](){return std::make_unique<FunctionLogarithm>();}},
+   {"load_csv", [](){return std::make_unique<FunctionCsvLoader>();}}};
 
 std::unique_ptr<Function>
 BasicFunctionProvider::createFunction(const std::string &inName) const

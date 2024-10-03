@@ -22,4 +22,16 @@ private:
   static constexpr int PARAMS_NO = 2;
 };
 
+class FunctionCsvLoader : public Function
+{
+public:
+  unsigned int getParametersNo() const override;
+  Operand operator()(const std::vector<Operand> &parameters) const override;
+  std::string getName() const override;
+  ~FunctionCsvLoader() override = default;
+
+private:
+  static constexpr int PARAMS_NO = 1;
+};
+
 #endif //BASICFUNCTIONS_HPP

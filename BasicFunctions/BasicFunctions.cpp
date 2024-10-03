@@ -24,3 +24,25 @@ std::string FunctionLogarithm::getName() const
 {
   return "log";
 }
+
+//---//
+
+unsigned int FunctionCsvLoader::getParametersNo() const
+{
+  return PARAMS_NO;
+}
+
+Operand FunctionCsvLoader::operator()(const std::vector<Operand> &parameters) const
+{
+  if (parameters.size() != PARAMS_NO)
+  {
+    throw std::runtime_error("incorrect parameters number");
+  }
+  std::string str = "load "+parameters[0].getString();
+  return Operand(str);
+}
+
+std::string FunctionCsvLoader::getName() const
+{
+  return "load_csv";
+}
