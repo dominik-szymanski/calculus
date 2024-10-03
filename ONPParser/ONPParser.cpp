@@ -76,7 +76,7 @@ ONPParser::isRightBracket(const std::string &expression) const
 bool
 ONPParser::isOperand(const std::string &expression) const
 {
-  return isNumber(expression) || expression[0] == '\"';
+  return expression[0] == '\"';
 }
 
 bool
@@ -138,10 +138,29 @@ ONPParser::splitExpression(const std::string &inExpression) const
 
   for (int i = 1; i < expression.size(); ++i)
   {
+    if(sub_exp.empty())
+    {
+      sub_exp = expression[i];
+      continue;
+    }
     if(sub_exp == " ")
     {
       continue;
     }
+    if(isOperand(sub_exp))
+    {
+      if(expression[i] != '\"') {
+        sub_exp += expression[i];
+      }
+      else{
+        sub_exp += expression[i];
+        split_expression.push_back(sub_exp);
+        sub_exp = "";
+        continue;
+      }
+      continue;
+    }
+
     if (isNumber(sub_exp))
     {
       std::string new_sub_exp = sub_exp + expression[i];
